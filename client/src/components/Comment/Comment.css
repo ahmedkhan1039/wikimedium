@@ -1,0 +1,43 @@
+#commentNotes{
+    border: 1px solid black;
+    border-radius: 10px;
+    position: absolute;
+    z-index: 1000;
+    width: 24%;
+    left:73%;
+}
+
+#header{
+    background-color: rgba(0,0,0,.05);
+    padding: 10px 20px;
+    color: rgba(0,0,0,.54);
+    font-size: 15px;
+}
+
+#commentContent{
+    padding: 10px 20px; 
+    font-size: 15px;
+}
+#commentContent[placeholder]:empty:before {
+    content: attr(placeholder);
+    color: #555; 
+}
+
+#commentContent[placeholder]:empty:focus:before {
+    content: "";
+}
+
+#saveComment{
+    float: right;
+    display: block;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+#saveComment:hover{
+    background-color: rgba(0,0,0,.54);
+    cursor: pointer;
+    color: white;
+}
