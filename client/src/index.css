@@ -27,6 +27,10 @@ body {
   background-image: linear-gradient(to bottom,rgba(12,242,150,.5),rgba(12,242,150,.5));
   display: inline;
   cursor: pointer;
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
 }
 
 .highlight:hover{
