@@ -2,7 +2,7 @@
 
 It is a mixture of Wikipedia and Medium Blog. It fetches the article specified by the title in the URL.
 While giving the flavour of Medium Blog, You can highlight and save a comment on a select text.
-It does not persist the selection or comments you put on a page. It is yet to be developed.
+Also you can persist the selections and comments.
 
 ## Getting Started
 
