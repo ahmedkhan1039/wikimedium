@@ -206,46 +206,54 @@ class WikiMedium extends Component {
         var s = new Array(0), rs = new Array(0);
         if (dangerous.startContainer !== a)
             for(var i = dangerous.startContainer; i !== a; i = i.parentNode)
-                s.push(i)
-        ;
-        if (0 < s.length) for(var j = 0; j < s.length; j++) {
-            var xs = document.createRange();
-            if (j) {
-                xs.setStartAfter(s[j-1]);
-                xs.setEndAfter(s[j].lastChild);
+                s.push(i);
+        
+        
+        if (s.length > 0){
+            for(var j = 0; j < s.length; j++) {
+                var xs = document.createRange();
+                if (j) {
+                    xs.setStartAfter(s[j-1]);
+                    xs.setEndAfter(s[j].lastChild);
+                }
+                else {
+                    xs.setStart(s[j], dangerous.startOffset);
+                    xs.setEndAfter(
+                        (s[j].nodeType === Node.TEXT_NODE)
+                        ? s[j] : s[j].lastChild
+                    );
+                }
+                rs.push(xs);
             }
-            else {
-                xs.setStart(s[j], dangerous.startOffset);
-                xs.setEndAfter(
-                    (s[j].nodeType === Node.TEXT_NODE)
-                    ? s[j] : s[j].lastChild
-                );
-            }
-            rs.push(xs);
         }
     
-        var e = new Array(0), re = new Array(0);
+        var e = new Array(0)
+        var re = new Array(0);
         if (dangerous.endContainer !== a)
             for(var k = dangerous.endContainer; k !== a; k = k.parentNode)
-                e.push(k)
-        ;
-        if (0 < e.length) for(var m = 0; m < e.length; m++) {
-            var xe = document.createRange();
-            if (m) {
-                xe.setStartBefore(e[m].firstChild);
-                xe.setEndBefore(e[m-1]);
-            }
-            else {
-                xe.setStartBefore(
-                    (e[m].nodeType === Node.TEXT_NODE)
-                    ? e[m] : e[m].firstChild
-                );
-                xe.setEnd(e[m], dangerous.endOffset);
-            }
-            re.unshift(xe);
-        }
+                e.push(k);
 
-        if ((0 < s.length) && (0 < e.length)) {
+        
+        if (e.length > 0) {
+            for(var m = 0; m < e.length; m++) {
+                var xe = document.createRange();
+                if (m) {
+                    xe.setStartBefore(e[m].firstChild);
+                    xe.setEndBefore(e[m-1]);
+                }
+                else {
+                    xe.setStartBefore(
+                        (e[m].nodeType === Node.TEXT_NODE)
+                        ? e[m] : e[m].firstChild
+                    );
+                    xe.setEnd(e[m], dangerous.endOffset);
+                }
+                re.unshift(xe);
+            }
+        }
+        
+
+        if ((s.length > 0) && (e.length > 0)) {
             var xm = document.createRange();
             xm.setStartAfter(s[s.length - 1]);
             xm.setEndBefore(e[e.length - 1]);
