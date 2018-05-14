@@ -1,23 +1,20 @@
-import React, {Component} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import createBrowserHistory from 'history/createBrowserHistory';
-import WikiMedium from './WikiMedium';
+import WikiMedium from './app/WikiMedium';
 import { Provider } from 'react-redux';
-import store from './store';
+import store from './app/store/store';
 
-class App extends Component {
-    render(){
-        return(
-            <Provider store={store}>
-                <WikiMedium title={this.props.match.params.title}/>
-            </Provider>
-        );
-    }
+const App = props => {
+    return(
+        <Provider store={store}>
+            <WikiMedium title={props.match.params.title}/>
+        </Provider>
+    );
 }
 
 ReactDOM.render(
-    <Router history={createBrowserHistory}>
+    <Router>
         <Route exact path="/wiki/:title" component={App} />
     </Router>,
     document.getElementById('root')

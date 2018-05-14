@@ -1,6 +1,6 @@
 {
-  "name": "client",
-  "version": "0.1.0",
+  "name": "wikimedium-client",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "material-ui": "^0.20.0",

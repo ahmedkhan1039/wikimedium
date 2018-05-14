@@ -35,12 +35,17 @@ class ArticleContent extends Component {
       }
 
     render() {
-        return (<div className='article'>
-            <MuiThemeProvider muiTheme={getMuiTheme()}>
-                <CircularProgress style={this.state.loaderStyle} size={300} thickness={10} />
-            </MuiThemeProvider>
-            <h1>{this.props.article.title}</h1>
-            {ReactHtmlParser(this.props.article.extract)}</div>);
+        return (
+            <div className='article'>
+                <MuiThemeProvider muiTheme={getMuiTheme()}>
+                    <CircularProgress style={this.state.loaderStyle} size={300} thickness={10} />
+                </MuiThemeProvider>
+                <h1>{this.props.article.title}</h1>
+                {
+                    ReactHtmlParser(this.props.article.extract)
+                }
+            </div>
+        );
     }
 }
 
@@ -52,8 +57,8 @@ ArticleContent.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    article: state.articleReducer.article,
-    loaded: state.articleReducer.loaded
+    article: state.wikiReducer.article,
+    loaded: state.wikiReducer.loaded
 });
 
 export default connect(mapStateToProps, { fetchArticle })(ArticleContent);

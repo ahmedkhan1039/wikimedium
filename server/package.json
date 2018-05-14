@@ -1,8 +1,9 @@
 {
     "name": "wikimedium-api",
     "main": "server.js",
+    "version": "1.0.0.0",
     "dependencies": {
         "express": "~4.0.0",
-        "request": "^2.85.0"
+        "node-fetch": "^2.1.2"
     }
 }

@@ -1,11 +1,13 @@
+import { ACTION_TYPE } from '../actions/actionTypes';
+
 const initialState = {
     article: {},
     loaded: false
 };
 
-export default function (state = initialState, action) {
+export default (state = initialState, action) => {
     switch (action.type) {
-        case 'FETCH_ARTICLE':
+        case ACTION_TYPE.FETCH_ARTICLE:
             return {
                 ...state,
                 article: action.payload,

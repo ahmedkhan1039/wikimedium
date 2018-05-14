@@ -1,16 +1,19 @@
-var request = require('request');
+const fetch = require('node-fetch');
 
-var getArticleContent = function getArticle(articleName, callback) {
-    var uri = 'https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&redirects=true&indexpageids=&titles='.concat(articleName);
-    request(uri, function (error, response, body) {
-        var articleData = JSON.parse(body);
-        articleData = articleData.query.pages[articleData.query.pageids[0]];
-        callback(error, response, articleData);
-    });
+const getArticleContent = (articleName) => {
+    const uri = `https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&redirects=true&indexpageids=&titles=${articleName}`;
 
+    return fetch(uri).then(
+        res => res.json()
+    )
+    .catch(
+        err => {
+            throw err;
+        }
+    );
 }
 
-var serviceObject = {
+const serviceObject = {
     "getArticleContent": getArticleContent
 }
 
